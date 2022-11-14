@@ -1,6 +1,7 @@
 import { Form, Formik, FormikHelpers } from "formik";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import TypeheadActores from "../actores/TypeheadActores";
 import { generosDTO } from "../generos/generos.model";
 import Button from "../utilidades/Button";
 import { cineDTO } from "../utilidades/cines.model";
@@ -60,6 +61,9 @@ export default function FormularioPelis(props: formularioPelisProps) {
                             setCinesNoSeleccionados(noSeleccionados)
                         }}
                         />
+                    </div>
+                    <div className="form-group">
+                        <TypeheadActores actores={[]}/>
                     </div>
                     <Button disabled={formikProps.isSubmitting} type="submit">Listo!</Button>
                     <Link className="btn btn-secondary" to="/actores">Cancelar</Link>
