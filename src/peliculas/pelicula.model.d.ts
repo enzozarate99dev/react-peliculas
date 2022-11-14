@@ -11,3 +11,12 @@ export interface landingPageDTO{
     enCartelera?: pelicula[];
     proximosEstrenos?: pelicula[]
 }
+
+export interface peliculaCreacionDTO{
+    title: string;
+    enCines: boolean;
+    poster?: File;
+    posterURL?: string;
+    fechaLanzamiento?: Date;
+    trailer: string;
+}
