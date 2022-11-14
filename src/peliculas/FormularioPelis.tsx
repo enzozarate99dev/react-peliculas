@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { generosDTO } from "../generos/generos.model";
 import Button from "../utilidades/Button";
+import { cineDTO } from "../utilidades/cines.model";
 import FormGroupCheckbox from "../utilidades/FormGroupCheckbox";
 import FormGroupFecha from "../utilidades/FormGroupFecha";
 import FormGroupImage from "../utilidades/FormGroupImage";
@@ -15,6 +16,8 @@ export default function FormularioPelis(props: formularioPelisProps) {
     const [generosSeleccionados, setGenerosSeleccionados] = useState(mapear(props.generosSeleccionados))
     const [generosNoSeleccionados, setGenerosNoSeleccionados] = useState(mapear(props.generosNoSeleccionados))
 
+    const [cinesSeleccionados, setCinesSeleccionados] = useState(mapear(props.cinesSeleccionados))
+    const [cinesNoSeleccionados, setCinesNoSeleccionados] = useState(mapear(props.cinesNoSeleccionados))
   
     function mapear(array: {id: number, nombre: string}[]): selectorMultipleModel[]{
     return array.map(valor => {
@@ -27,6 +30,8 @@ export default function FormularioPelis(props: formularioPelisProps) {
         <Formik initialValues={props.modelo}
             onSubmit={(valores, acciones) => {
             valores.generosIds = generosSeleccionados.map(valor => valor.llave)
+            valores.cinesIds = cinesSeleccionados.map(valor => valor.llave)
+
             props.onSubmit(valores, acciones)}}>
             {(formikProps) => (
                 <Form>
@@ -46,6 +51,16 @@ export default function FormularioPelis(props: formularioPelisProps) {
                         }}
                         />
                     </div>
+                    <div className="form-group">
+                        <label>Cines</label>
+                        <SelectorMultiple seleccionados={cinesSeleccionados}
+                        noSeleccionados={cinesNoSeleccionados}
+                        onChange={(seleccionados, noSeleccionados) => {
+                            setCinesSeleccionados(seleccionados)
+                            setCinesNoSeleccionados(noSeleccionados)
+                        }}
+                        />
+                    </div>
                     <Button disabled={formikProps.isSubmitting} type="submit">Listo!</Button>
                     <Link className="btn btn-secondary" to="/actores">Cancelar</Link>
                 </Form>
@@ -58,5 +73,8 @@ interface formularioPelisProps {
     onSubmit(values: peliculaCreacionDTO, actions: FormikHelpers<peliculaCreacionDTO>): void;
     generosSeleccionados: generosDTO[];
     generosNoSeleccionados: generosDTO[];
+    cinesSeleccionados: cineDTO[];
+    cinesNoSeleccionados: cineDTO[];
+
 
 }
