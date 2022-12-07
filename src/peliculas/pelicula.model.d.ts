@@ -1,25 +1,52 @@
 // este es un archivo de declaraciones. los .d.ts son usados para proveer informacion tipo 
 //typescript sobre una api escrita en javascript
 
-export interface pelicula{
+// import { generoDTO } from "../generos/generos.model";
+// import { cineDTO } from "../cines/cines.model";
+
+
+
+export interface peliculaDTO{
     id: number;
-    title: string;
-    poster: string
+    titulo: string;
+    poster: string;
+    enCines: boolean;
+    resumen?: string;
+    fechaLanzamiento: Date;
+    trailer: string;
+    cines: cineDTO[];
+    generos: generoDTO[];
+    actores: actorPeliculaDTO[];
 }
 
 export interface landingPageDTO{
-    enCartelera?: pelicula[];
-    proximosEstrenos?: pelicula[]
+    enCines?: peliculaDTO[];
+    proximosEstrenos?: peliculaDTO[]
 }
 
 export interface peliculaCreacionDTO{
-    title: string;
+    titulo: string;
     enCines: boolean;
+    resumen?: string;
     poster?: File;
     posterURL?: string;
     fechaLanzamiento?: Date;
     trailer: string;
     generosIds?: number[];
     cinesIds?: number[];
+    actores?: actorPeliculaDTO[];
 
+
+}
+export interface peliculasPostGetDTO{
+    generos: generoDTO[];
+    cines: cineDTO[];
+}
+export interface peliculasPutGetDTO{
+    pelicula: peliculaDTO;
+    generosSeleccionados: generoDTO[];
+    generosNoSeleccionados: generoDTO[];
+    cinesSeleccionados: cineDTO[];
+    cinesNoSeleccionados: cineDTO[];
+    actores: actorPeliculaDTO[];
 }

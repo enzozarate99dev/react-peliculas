@@ -1,17 +1,21 @@
+import EditarEntidad from "../utilidades/EditarEntidad"
+import { urlGeneros } from "../utilidades/endpoints"
 import FormularioGeneros from "./FormularioGeneros"
+import { generoCreacionDTO, generoDTO } from "./generos.model"
 
 export default function EditarGenero() {
 
-    //const { id }: any = useParams()
-
     return (
         <>
-            <h3>Editar Genero</h3>
-            <FormularioGeneros modelo={{ nombre: 'Drama' }}
-                onSubmit={async (valores) => {
-                    await new Promise(res => setTimeout(res, 3000))
-                    console.log('valores')
-                }} />
+             <EditarEntidad<generoCreacionDTO, generoDTO>
+                url={urlGeneros} urlIndice="/generos" nombreEntidad="Géneros">
+                {(entidad, editar) =>
+                    <FormularioGeneros modelo={entidad}
+                        onSubmit={async valores => {
+                            await editar(valores)
+                        }}
+                    />}
+            </EditarEntidad>
         </>
     )
 }

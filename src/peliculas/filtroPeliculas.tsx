@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from "formik";
-import { generosDTO } from "../generos/generos.model";
+import { generoDTO } from "../generos/generos.model";
 import Button from "../utilidades/Button";
 
 export default function FiltroPeliculas() {
@@ -11,7 +11,7 @@ export default function FiltroPeliculas() {
         enCines: false
     }
 
-    const generos: generosDTO[] = [{ id: 1, nombre: 'Accion' }, { id: 2, nombre: 'Terror' }]
+    const generos: generoDTO[] = [{ id: 1, nombre: 'Accion' }, { id: 2, nombre: 'Terror' }]
     return (
         <>
             <h3>Filtrar Pelis</h3>

@@ -1,13 +1,19 @@
-import FormGroupCine from "./FormGroupCines";
+import FormularioGeneros from "../generos/FormularioGeneros";
+import { cineCreacionDTO, cineDTO } from "./cines.model";
+import EditarEntidad from "../utilidades/EditarEntidad";
+import { urlCines } from "../utilidades/endpoints";
+import FormularioCines from "./FormularioCines";
 
 export default function EditarCine() {
     return (
-        <>
-         <h3>Editar Cine</h3>
-        <FormGroupCine 
-            modelo={{nombre: 'Cinema Center'}}
-            onSubmit={valores => console.log(valores)}
-        />
-        </>
+        <EditarEntidad<cineCreacionDTO, cineDTO>
+        url={urlCines} urlIndice="/cines" nombreEntidad="Cines">
+        {(entidad, editar) =>
+            <FormularioCines modelo={entidad}
+                onSubmit={async valores => {
+                    await editar(valores)
+                }}
+            />}
+    </EditarEntidad>
     )
 }

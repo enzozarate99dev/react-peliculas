@@ -3,12 +3,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { actorPeliculaDTO } from "../actores/actores.model";
 import TypeheadActores from "../actores/TypeheadActores";
-import { generosDTO } from "../generos/generos.model";
+import { cineDTO } from "../cines/cines.model";
+import { generoDTO } from "../generos/generos.model";
 import Button from "../utilidades/Button";
-import { cineDTO } from "../utilidades/cines.model";
 import FormGroupCheckbox from "../utilidades/FormGroupCheckbox";
 import FormGroupFecha from "../utilidades/FormGroupFecha";
 import FormGroupImage from "../utilidades/FormGroupImage";
+import FormGroupMark from "../utilidades/FormGroupMark";
 import FormGroupText from "../utilidades/FormGroupText";
 import SelectorMultiple, { selectorMultipleModel } from "../utilidades/SelectorMultiple";
 import { peliculaCreacionDTO } from "./pelicula.model";
@@ -21,7 +22,7 @@ export default function FormularioPelis(props: formularioPelisProps) {
     const [cinesSeleccionados, setCinesSeleccionados] = useState(mapear(props.cinesSeleccionados))
     const [cinesNoSeleccionados, setCinesNoSeleccionados] = useState(mapear(props.cinesNoSeleccionados))
 
-    const [actoresSeleccionados, setActoresSeleccionados] = useState<actorPeliculaDTO[]>([])
+    const [actoresSeleccionados, setActoresSeleccionados] = useState<actorPeliculaDTO[]>(props.actoresSeleccionados)
     function mapear(array: { id: number, nombre: string }[]): selectorMultipleModel[] {
         return array.map(valor => {
             return { llave: valor.id, valor: valor.nombre }
@@ -44,6 +45,9 @@ export default function FormularioPelis(props: formularioPelisProps) {
                     <FormGroupText campo="trailer" label="Trailer"></FormGroupText>
                     <FormGroupFecha label="Fecha de Lanzamiento" campo="fechaLanzamiento"></FormGroupFecha>
                     <FormGroupImage campo="poster" label="Poster" imagenURL={props.modelo.posterURL} />
+                    <FormGroupMark campo="resumen" label="Rseumen" />   
+                     
+                
 
                     <div className="form-group">
                         <label>Generos</label>
@@ -104,10 +108,12 @@ export default function FormularioPelis(props: formularioPelisProps) {
 interface formularioPelisProps {
     modelo: peliculaCreacionDTO;
     onSubmit(values: peliculaCreacionDTO, actions: FormikHelpers<peliculaCreacionDTO>): void;
-    generosSeleccionados: generosDTO[];
-    generosNoSeleccionados: generosDTO[];
+    generosSeleccionados: generoDTO[];
+    generosNoSeleccionados: generoDTO[];
     cinesSeleccionados: cineDTO[];
     cinesNoSeleccionados: cineDTO[];
+    actoresSeleccionados: actorPeliculaDTO[];
+
 
 
 }

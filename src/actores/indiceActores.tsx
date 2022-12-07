@@ -1,10 +1,35 @@
-import { Link } from "react-router-dom";
+import { actorDTO } from "./actores.model";
+import IndiceEntidad from "../utilidades/IndiceEntidad";
+import { urlActores } from "../utilidades/endpoints";
 
-export default function IndiceActores(){
-    return(
+export default function IndiceActores() {
+    return (
         <>
-        <h3>Actores</h3>
-        <Link to='actores/crear'>Crear Actor</Link>
+            <IndiceEntidad<actorDTO>
+                 url={urlActores} urlCrear="actores/crear" titulo="Actores"
+                 nombreEntidad="Actor"
+            >
+                {(actores, botones) => <>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {actores?.map(actor =>
+                            <tr key={actor.id}>
+                                <td>
+                                    {botones(`actores/editar/${actor.id}`, actor.id)}
+                                </td>
+                                <td>
+                                    {actor.nombre}
+                                </td>
+                            </tr>)}
+                    </tbody>
+                </>}
+
+            </IndiceEntidad>
         </>
     )
 }

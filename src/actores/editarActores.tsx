@@ -1,16 +1,36 @@
+import EditarEntidad from "../utilidades/EditarEntidad";
+import { urlActores } from "../utilidades/endpoints";
+import { convertirActoraFormData } from "../utilidades/FormDataUtils";
+import { actorCreacionDTO, actorDTO } from "./actores.model";
 import FormularioActores from "./FormularioActores";
 
+
 export default function EditarActores() {
+
+    const transformar = (actor: actorDTO) => {
+        return {
+            nombre: actor.nombre,
+            fotoURL: actor.foto,
+            biografia: actor.biografia,
+            fechaNacimiento: new Date(actor.fechaNacimiento)
+        }
+    }
+
+
     return (
         <>
-            <h3> Editar Actores</h3>
-            <FormularioActores
-                modelo={{
-                    nombre: 'Messi', fechaNacimiento: new Date('1987-06-20T00:00:00'),
-                    fotoURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Lionel_Messi_20180626.jpg/640px-Lionel_Messi_20180626.jpg"
-                }}
-                onSubmit={values => console.log(values)}
-            />
+            <EditarEntidad<actorCreacionDTO, actorDTO>
+                url={urlActores} urlIndice="/actores" nombreEntidad="Actores"
+                transformarFormData={convertirActoraFormData}
+                transformar={transformar}
+            >
+                {(entidad, editar) =>
+                    <FormularioActores
+                        modelo={entidad}
+                        onSubmit={async values => await editar(values)}
+                    />}
+            </EditarEntidad>
+
         </>
     )
 }

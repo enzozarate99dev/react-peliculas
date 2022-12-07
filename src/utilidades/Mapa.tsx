@@ -1,6 +1,6 @@
-import L, { Marker } from "leaflet";
+import L from "leaflet";
 import icon from 'leaflet/dist/images/marker-icon.png'
-import { MapContainer, TileLayer, useMapEvent } from "react-leaflet";
+import { MapContainer, Popup, TileLayer, useMapEvent, Marker } from "react-leaflet";
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 import 'leaflet/dist/leaflet.css'
 import { coordenadaDTO } from "./coordenadas.model";
@@ -24,12 +24,17 @@ export default function Mapa(props: mapaProps) {
             style={{ height: props.height }}
         >
             <TileLayer attribution="Peliculas React" url='https://tile.openstreetmap.org/{z}/{x}/{y}.png' />
+            {props.soloLectura ? null :<ClickMapa setPunto={coordenadas => {
+                setCoordenadas([coordenadas]);
+                props.manejarClickMapa(coordenadas);
+            }} /> }
             <ClickMapa setPunto={coordenadas => {
-                setCoordenadas([coordenadas])
+                setCoordenadas([coordenadas]);
+                props.manejarClickMapa(coordenadas);
             }} />
-            {/* {coordenadas.map(coordenada => <Marcador key={coordenada.lat + coordenada.lng}
+            {coordenadas.map(coordenada => <Marcador key={coordenada.lat + coordenada.lng}
                 {...coordenada}
-            />)} */}
+            />)}
         </MapContainer>
     )
 }
@@ -41,21 +46,31 @@ function ClickMapa(props: clickMapaProps) {
     return null;
 }
 
+
+function Marcador(props: coordenadaDTO) {
+
+    return (
+        <Marker position={[props.lat, props.lng]}>
+            {props.nombre ? <Popup>
+                {props.nombre}
+            </Popup> : null}
+        </Marker>
+    )
+}
+
 interface clickMapaProps {
     setPunto(coordenadas: coordenadaDTO): void;
 }
 
-// function Marcador(props: coordenadaDTO) {
-
-//     return (
-//         <Marker position={[props.lat, props.lng]}></Marker>
-//     )
-// }
-
 interface mapaProps {
     height: string;
+    coordenadas: coordenadaDTO[];
+    manejarClickMapa(coordenadas: coordenadaDTO): void;
+    soloLectura: boolean;
 }
 
 Mapa.defaultProps = {
-    height: '500px'
+    height: '500px',
+    soloLectura: false,
+    manejarClickMapa: () => { }
 }
