@@ -15,25 +15,24 @@ import LandingPage from "./peliculas/landing";
 import Redireccionar from "./utilidades/Redireccionar";
 
 const rutas = [
-    {path: '/' , componente: LandingPage, exact: true},
-
-    {path: '/generos', componente: GenerosIndice, exact: true},
-    {path: '/generos/crear', componente: CrearGenero},
-    {path: '/generos/editar/:id(\\d+)', componente: EditarGenero},
+    {path: '/generos', componente: GenerosIndice, exact: true, esAdmin: true},
+    {path: '/generos/crear', componente: CrearGenero, esAdmin: true},
+    {path: '/generos/editar/:id(\\d+)', componente: EditarGenero, esAdmin: true},
 
     {path: '/actores', componente: IndiceActores, exact: true},
-    {path: '/actores/crear', componente: CrearActores},
-    {path: '/actores/editar/:id(\\d+)', componente: EditarActores},
+    {path: '/actores/crear', componente: CrearActores, esAdmin: true},
+    {path: '/actores/editar/:id(\\d+)', componente: EditarActores, esAdmin: true},
 
-    {path: '/cines', componente: IndiceCines, exact: true},
-    {path: '/cines/crear', componente: CrearCine},
-    {path: '/cines/editar/:id(\\d+)', componente: EditarCine},
+    {path: '/cines', componente: IndiceCines, exact: true, esAdmin: true},
+    {path: '/cines/crear', componente: CrearCine, esAdmin: true},
+    {path: '/cines/editar/:id(\\d+)', componente: EditarCine, esAdmin: true},
 
     {path: '/pelicula/:id(\\d+)', componente: DetallePelicula},
     {path: '/peliculas/filtrar', componente: FiltroPeliculas},
-    {path: '/peliculas/crear', componente: CrearPeliculas},
-    {path: '/peliculas/editar/:id(\\d+)', componente: EditarPeliculas},
+    {path: '/peliculas/crear', componente: CrearPeliculas, esAdmin: true},
+    {path: '/peliculas/editar/:id(\\d+)', componente: EditarPeliculas, esAdmin: true},
 
+    {path: '/' , componente: LandingPage, exact: true, esAdmin: true},
     {path: '*', componente: Redireccionar} //siempre al final porque atrapa a todas las rutas
 ]
 export default rutas;
