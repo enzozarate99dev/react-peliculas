@@ -12,7 +12,9 @@ configValidaciones()
 
 function App() {
 
-  const [claims, setClaims] = useState<claim[]>([])
+  const [claims, setClaims] = useState<claim[]>([
+    {nombre: 'role', valor: 'admin'}
+  ])
 
   function actualizar(claims: claim[]) {
     setClaims(claims)

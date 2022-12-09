@@ -3,7 +3,7 @@ import { useEffect, useState, ReactElement } from "react";
 
 import { useHistory, useParams } from "react-router-dom";
 import Cargando from "./Cargando";
-import MostrarErrors from "./MostrarErrores";
+import MostrarErrores from "./MostrarErrores";
 
 export default function EditarEntidad<TCreacion, TLectura>(props: editarEntidadProps<TCreacion, TLectura>) {
 
@@ -44,7 +44,7 @@ export default function EditarEntidad<TCreacion, TLectura>(props: editarEntidadP
     return (
         <>
             <h3>Editar {props.nombreEntidad}</h3>
-            <MostrarErrors errores={errores} />
+            <MostrarErrores errores={errores} />
             {entidad ? props.children(entidad, editar) : <Cargando />}
         </>
     )

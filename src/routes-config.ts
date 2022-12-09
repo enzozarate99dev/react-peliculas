@@ -32,7 +32,7 @@ const rutas = [
     {path: '/peliculas/crear', componente: CrearPeliculas, esAdmin: true},
     {path: '/peliculas/editar/:id(\\d+)', componente: EditarPeliculas, esAdmin: true},
 
-    {path: '/' , componente: LandingPage, exact: true, esAdmin: true},
+    {path: '/' , componente: LandingPage, exact: true},
     {path: '*', componente: Redireccionar} //siempre al final porque atrapa a todas las rutas
 ]
 export default rutas;

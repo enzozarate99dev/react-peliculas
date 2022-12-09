@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { cineCreacionDTO } from "./cines.model";
 import { urlCines } from "../utilidades/endpoints";
-import MostrarErrors from "../utilidades/MostrarErrores";
+import MostrarErrores from "../utilidades/MostrarErrores";
 import FormularioCines from "./FormularioCines";
 
 export default function CrearCine() {
@@ -26,7 +26,7 @@ export default function CrearCine() {
     return (
         <>
         <h3>Crear Cine</h3>
-        <MostrarErrors errores={errores} />
+        <MostrarErrores errores={errores} />
         <FormularioCines 
             modelo={{nombre: ''}}
             onSubmit={async valores => await crear(valores)}

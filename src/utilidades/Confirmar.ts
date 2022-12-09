@@ -8,6 +8,7 @@ export default function confirmar(
 
     Swal.fire({
         title: titulo,
+        confirmButtonText: textoBotonConfirmar,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#64658d',

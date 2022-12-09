@@ -22,7 +22,7 @@ export default function DetallePelicula(){
 
     function generarURLYoutubeEmbebido(url: any) : string {
         if (!url){
-            return ' ';
+            return '';
         }
 
         var video_id = url.split('v=')[1];

@@ -1,5 +1,6 @@
 import { Form, Formik, FormikHelpers } from "formik";
 import { useState } from "react";
+import * as Yup from 'yup'
 import { Link } from "react-router-dom";
 import { actorPeliculaDTO } from "../actores/actores.model";
 import TypeheadActores from "../actores/TypeheadActores";
@@ -23,6 +24,7 @@ export default function FormularioPelis(props: formularioPelisProps) {
     const [cinesNoSeleccionados, setCinesNoSeleccionados] = useState(mapear(props.cinesNoSeleccionados))
 
     const [actoresSeleccionados, setActoresSeleccionados] = useState<actorPeliculaDTO[]>(props.actoresSeleccionados)
+   
     function mapear(array: { id: number, nombre: string }[]): selectorMultipleModel[] {
         return array.map(valor => {
             return { llave: valor.id, valor: valor.nombre }
@@ -37,7 +39,11 @@ export default function FormularioPelis(props: formularioPelisProps) {
                 valores.cinesIds = cinesSeleccionados.map(valor => valor.llave)
 
                 props.onSubmit(valores, acciones)
-            }}>
+            }}
+            validationSchema={Yup.object({
+                titulo: Yup.string().required('Este campo es requerido').primeraLetraMayuscula()
+            })}
+        >
             {(formikProps) => (
                 <Form>
                     <FormGroupText campo="titulo" label="Titulo"></FormGroupText>
@@ -107,7 +113,7 @@ export default function FormularioPelis(props: formularioPelisProps) {
 }
 interface formularioPelisProps {
     modelo: peliculaCreacionDTO;
-    onSubmit(values: peliculaCreacionDTO, actions: FormikHelpers<peliculaCreacionDTO>): void;
+    onSubmit(valores: peliculaCreacionDTO, acciones: FormikHelpers<peliculaCreacionDTO>): void;
     generosSeleccionados: generoDTO[];
     generosNoSeleccionados: generoDTO[];
     cinesSeleccionados: cineDTO[];

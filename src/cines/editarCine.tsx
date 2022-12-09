@@ -10,8 +10,8 @@ export default function EditarCine() {
         url={urlCines} urlIndice="/cines" nombreEntidad="Cines">
         {(entidad, editar) =>
             <FormularioCines modelo={entidad}
-                onSubmit={async valores => {
-                    await editar(valores)
+                onSubmit={async values => {
+                    await editar(values)
                 }}
             />}
     </EditarEntidad>
