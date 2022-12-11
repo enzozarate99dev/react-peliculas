@@ -13,6 +13,9 @@ import FiltroPeliculas from "./peliculas/filtroPeliculas";
 import DetallePelicula from "./peliculas/DetallePelicula";
 import LandingPage from "./peliculas/landing";
 import Redireccionar from "./utilidades/Redireccionar";
+import Registro from "./auth/Registro";
+import Login from "./auth/Login";
+
 
 const rutas = [
     {path: '/generos', componente: GenerosIndice, exact: true, esAdmin: true},
@@ -31,6 +34,10 @@ const rutas = [
     {path: '/peliculas/filtrar', componente: FiltroPeliculas},
     {path: '/peliculas/crear', componente: CrearPeliculas, esAdmin: true},
     {path: '/peliculas/editar/:id(\\d+)', componente: EditarPeliculas, esAdmin: true},
+
+    {path: '/registro', componente: Registro},
+    {path: '/login', componente: Login},
+
 
     {path: '/' , componente: LandingPage, exact: true},
     {path: '*', componente: Redireccionar} //siempre al final porque atrapa a todas las rutas
