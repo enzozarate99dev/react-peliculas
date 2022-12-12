@@ -1,3 +1,5 @@
+import { string } from "yup";
+
 export interface claim{
     nombre: string;
     valor: string;
@@ -10,4 +12,8 @@ export interface credencialesUsuario{
 export interface respuestaAutenticacion{
     token: string;
     expiracion: Date;
+}
+export interface usuarioDTO{
+    id: string;
+    email: string;
 }

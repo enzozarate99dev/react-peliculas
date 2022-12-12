@@ -3,18 +3,23 @@ import { BrowserRouter } from 'react-router-dom'
 import Menu from './utilidades/Menu';
 import rutas from './routes-config'
 import configValidaciones from './validaciones';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { claim } from './auth/auth.model';
 import AutenticacionContext from './auth/AutenticacionContext'
+import { obtenerClaims } from './auth/manejadorJWT';
+import configurarInterceptor from './utilidades/interceptores';
 
 configValidaciones()
+configurarInterceptor()
 
 
 function App() {
 
-  const [claims, setClaims] = useState<claim[]>([
-    {nombre: 'role', valor: 'admin'}
-  ])
+  const [claims, setClaims] = useState<claim[]>([])
+
+  useEffect(() => {
+    setClaims(obtenerClaims())
+  }, [])
 
   function actualizar(claims: claim[]) {
     setClaims(claims)
