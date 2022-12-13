@@ -1,9 +1,9 @@
 // este es un archivo de declaraciones. los .d.ts son usados para proveer informacion tipo 
 //typescript sobre una api escrita en javascript
 
-// import { generoDTO } from "../generos/generos.model";
-// import { cineDTO } from "../cines/cines.model";
-
+ import { generoDTO } from "../generos/generos.model";
+import { cineDTO } from "../cines/cines.model";
+import {actorPeliculaDTO} from '../actores/actores.model'
 
 
 export interface peliculaDTO{

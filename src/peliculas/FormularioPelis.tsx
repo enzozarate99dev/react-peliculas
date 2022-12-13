@@ -37,7 +37,7 @@ export default function FormularioPelis(props: formularioPelisProps) {
             onSubmit={(valores, acciones) => {
                 valores.generosIds = generosSeleccionados.map(valor => valor.llave)
                 valores.cinesIds = cinesSeleccionados.map(valor => valor.llave)
-
+                valores.actores = actoresSeleccionados;
                 props.onSubmit(valores, acciones)
             }}
             validationSchema={Yup.object({
