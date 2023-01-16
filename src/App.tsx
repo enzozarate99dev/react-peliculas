@@ -32,9 +32,10 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <AutenticacionContext.Provider value={{ claims, actualizar }}>
+        <AutenticacionContext.Provider value={{ claims, actualizar }} >
+          <div className=' bg-dark bg-gradient '>
           <Menu />
-          <div className='container'>
+          <div className='container' >
 
             <Switch>
               {rutas.map((ruta) => <Route key={ruta.path} path={ruta.path}
@@ -45,6 +46,7 @@ function App() {
               </Route>)}
             </Switch>
           </div >
+          </div>
         </AutenticacionContext.Provider>
 
       </BrowserRouter>

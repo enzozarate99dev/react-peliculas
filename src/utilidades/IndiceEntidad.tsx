@@ -24,7 +24,7 @@ export default function IndiceEntidad<T>(props: indiceEntidadProps<T>) {
         })
             .then((respuesta: AxiosResponse<T[]>) => {
                 const totalDeRegistros =
-                    parseInt(respuesta.headers['cantidadtotalregistros'], 10);
+                parseInt(respuesta.headers['cantidadtotalregistros'], 10);
                 setTotalDePaginas(Math.ceil(totalDeRegistros / recordsPorPagina));
                 setEntidades(respuesta.data);
             })

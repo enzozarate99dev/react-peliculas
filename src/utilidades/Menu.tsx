@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AutenticacionContext from "../auth/AutenticacionContext";
 import Autorizado from "../auth/Autorizado";
-import { logout, obtenerClaims } from "../auth/manejadorJWT";
+import { logout } from "../auth/manejadorJWT";
 import Button from "./Button";
 
 export default function Menu() {
@@ -14,7 +14,7 @@ export default function Menu() {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient " >
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/" activeClassName={claseActiva}>React Pelis</NavLink>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup" style={{ display: 'flex', justifyContent: 'space-between' }}>

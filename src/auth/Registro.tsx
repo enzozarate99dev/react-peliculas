@@ -44,7 +44,7 @@ function guardarTokenLocalStorage(data: respuestaAutenticacion) {
 }
 
 
-function actualizar(arg0: any) {
+function actualizar(arg: any) {
     throw new Error("Function not implemented.");
 }
 
